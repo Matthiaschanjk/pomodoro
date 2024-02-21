@@ -29,9 +29,21 @@
       </div>
     </div>
 </div>
+
 <div id="input-div">
     <h3>You are in</h3><p></p>
-    <h2 id="country"><%= country %></h2>
+    <% if (!locals.country) { %>
+        <form action="/" method="post">
+        <div class="container">
+            <div class="input-group mb-3" id="country-input">
+                <input type="text" class="form-control" aria-describedby="basic-addon3" name="country">
+                <button class="btn btn-warning retroyellow">submit</button>
+            </div>
+        </div>
+    </form>
+    <% } else { %>
+        </q><h2 id="country"><%= country %></h2>
+    <% } %>
 </div>
 
 <% if (locals.data) { %>

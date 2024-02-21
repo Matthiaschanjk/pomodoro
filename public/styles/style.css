@@ -72,3 +72,16 @@ footer a {
 #country {
     color:#ca3c4a
 }
+
+#country-input {
+    width: 40%;
+}
+
+
+@media (max-width: 700px) {
+    .card {
+        width: 80%;      
+    }
+
+    
+}
