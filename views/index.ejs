@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Pomodoro</title>
+</head>
+<body>
+<div>
+    <h1 href="/">Steward🛶</h1>
+    <div class="pt-5" id="container">
+    <div class="card text-center">
+        <div class="card-body">
+        <button class="card-title btn btn-light" onclick="work()" type="submit">Work</button>
+        <button class="card-title btn btn-light" onclick="chill()" type="submit">Break</button>
+        <% if (locals.timer) { %>
+        <p class="card-text" id="timer"><%= timer %></p>
+        <% } else { %>
+        <p class="card-text" id="timer">50:00</p>
+        <% } %>
+        <button class="btn btn-warning retroyellow" id="startbutton" onclick="start()">Start</button>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="input-div">
+    <h3>You are in</h3><p></p>
+    <h2 id="country"><%= country %></h2>
+</div>
+
+<% if (locals.data) { %>
+    <div class="container mt-3">
+        <img src="/images/cloudy.png" alt="weather_icon">
+        <h4 class="weathertext"><%= data.air_temperature%>°</h4>
+        <img src="/images/wind.png" alt="weather_icon">
+        <h4 class="weathertext"><%= data.wind_speed%>(m/s)</h4>
+        <img src="/images/humidity.png" alt="weather_icon">
+        <h4 class="weathertext"><%= data.relative_humidity%>%</h4>
+        <img src="/images/uv.png" alt="weather_icon">
+        <h4 class="weathertext"><%= data.ultraviolet_index_clear_sky %><h4>
+    </div>
+<% } else { %>
+    <div id="input-div">
+        Weather unavailable in your location.
+    </div>
+<% } %>
+
+<footer class="mt-5">
+    <a href="https://matthiaschanjk.github.io/site/">MATTHIAS CHAN</a>
+</footer>
+<script>
+function start() {
+    let timer = document.getElementById("timer").innerHTML;
+    let totalSeconds = (timer.slice(0, 2) * 60) + Number(timer.slice(-2));
+    let button = document.getElementById("startbutton");
+    button.setAttribute('onclick', 'pause()');
+    button.innerHTML = "Pause";
+
+    counter = setInterval(function() {
+    totalSeconds--;
+    let currentMinutes = Math.floor(totalSeconds/60);
+    let currentSeconds = Math.floor(totalSeconds % 60)
+    if (currentMinutes === 0 && currentSeconds === 0) {
+        document.getElementById("timer").innerHTML = "Time's up!";
+        clearInterval(counter);
+    }
+    if (currentSeconds > 9) {
+        document.getElementById("timer").innerHTML = `${currentMinutes}:${currentSeconds}`;
+    }
+    else {
+        document.getElementById("timer").innerHTML = `${currentMinutes}:0${currentSeconds}`; 
+    }
+    }, 1000)
+}
+
+function pause() {
+    let button = document.getElementById("startbutton");
+    button.setAttribute('onclick', 'start()');
+    button.innerHTML = "start";
+    clearInterval(counter);
+}
+
+function work(){
+    document.getElementById("timer").innerHTML = "50:00";
+}
+
+function chill(){
+    document.getElementById("timer").innerHTML = "15:00";
+}
+
+</script>
+</body>
+</html>

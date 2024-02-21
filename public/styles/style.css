@@ -1,0 +1,74 @@
+body {
+    font-family: "VT323", monospace;
+    font-style: normal;
+    background-color: #e3dec8;
+  }
+  
+h1 {
+    text-align: center;
+    color: #ca3c4a;
+    letter-spacing: 2px;
+}
+
+img {
+    height: 40px;
+    width: auto;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+footer a {
+    color:#ca3c4a;
+    text-align: center;
+}
+
+.card, .width35 {
+    width: 35%;
+}
+
+.retroyellow {
+    color: white;
+    background-color: #f2c665;
+    border: #f2c665;
+}
+
+.retroblue {
+    color: white;
+    background-color: #99beb7;
+    border: #99beb7;
+}
+
+.btn {
+    font-size: 1.5rem;
+}
+
+.weathertext {
+    margin-right:1.25rem;
+}
+
+#container, .container {
+    display: flex;
+    justify-content: center;
+}
+
+#timer {
+    color: #ca3c4a;
+    font-size:6rem;
+    letter-spacing: 2px;
+}
+
+#input-div {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#submitweather {
+    font-size: 0.9rem;
+}
+
+#country {
+    color:#ca3c4a
+}
