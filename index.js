@@ -6,7 +6,6 @@ const app = express();
 const port = 3000;
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
-const API_KEY = ""
 const API_GEO = "http://api.openweathermap.org/geo/1.0/direct?"
 const API_WEA = "https://api.met.no/weatherapi/locationforecast/2.0/complete?lat="
 
